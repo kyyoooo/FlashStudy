@@ -16,3 +16,32 @@
 :host-context(body.dark-mode) button[title="Supprimer"] {
   color: #fca5a5; 
 }
+
+/* Listes d'éléments */
+.question-item, .list-item {
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s, border-left 0.2s;
+}
+
+.question-item:hover, .list-item:hover {
+  transform: translateX(5px);
+  border-left: 4px solid var(--primary);
+}
+
+table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+th { text-align: left; padding: 15px; border-bottom: 2px solid #e2e8f0; color: var(--text-light); }
+td { padding: 15px; border-bottom: 1px solid #f1f5f9; }
+
+/* Mode Sombre */
+:host-context(body.dark-mode) .question-item, 
+:host-context(body.dark-mode) .list-item { background-color: #1e293b; border-color: #334155; color: white; }
+:host-context(body.dark-mode) table, 
+:host-context(body.dark-mode) th, 
+:host-context(body.dark-mode) td { border-color: #334155; color: #e2e8f0; }

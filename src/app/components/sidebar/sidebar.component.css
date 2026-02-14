@@ -1,0 +1,48 @@
+/* Styles spécifiques de la Barre Latérale (Sidebar) */
+.sidebar {
+  width: 260px;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid #bfdbfe; 
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  flex-shrink: 0; 
+  height: 100%; 
+  box-sizing: border-box;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(255,255,255,0.5);
+  border-radius: var(--radius);
+}
+
+.role-switcher {
+  background: white;
+  padding: 15px;
+  border-radius: var(--radius);
+  margin-bottom: 30px;
+  border: 1px solid #bfdbfe;
+}
+
+.role-label { font-size: 0.75rem; font-weight: 800; color: var(--text-light); text-transform: uppercase; margin-bottom: 8px; }
+.role-btn-group { display: flex; background: #f1f5f9; border-radius: 8px; padding: 4px; }
+.role-option { flex: 1; border: none; background: transparent; padding: 8px; font-weight: 600; cursor: pointer; color: var(--text-light); border-radius: 6px; }
+.role-option.active { background: var(--primary); color: white; }
+
+.menu { display: flex; flex-direction: column; gap: 8px; }
+.menu-btn { background: transparent; border: none; padding: 12px 16px; border-radius: var(--radius); color: #475569; font-weight: 600; cursor: pointer; display: flex; gap: 12px; width: 100%; }
+.menu-btn:hover { background-color: rgba(255, 255, 255, 0.6); color: var(--primary); }
+.menu-btn.active { background-color: var(--primary); color: white; }
+
+/* Support Mode Sombre Local */
+:host-context(body.dark-mode) .sidebar { background-color: #1e293b; border-color: #334155; }
+:host-context(body.dark-mode) .role-switcher { background-color: #1e293b; border-color: #334155; }
+:host-context(body.dark-mode) .brand { color: white; background: rgba(255,255,255,0.05); }

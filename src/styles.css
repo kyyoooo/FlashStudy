@@ -1,150 +1,41 @@
+/* src/styles.css */
+
 /* --- VARIABLES GLOBALES --- */
 :root {
   --primary: #4f46e5;       /* Indigo principal */
-  --primary-light: #eef2ff; /* Indigo muy suave para fondos */
-  --secondary: #1e293b;     /* Azul oscuro casi negro para texto */
-  
-  /* PALETA AZUL */
-  --sidebar-bg: #dbeafe;    /* Azul suave para la columna */
-  --main-bg: #eff6ff;       /* Azul muy pálido para el fondo general */
+  --primary-light: #eef2ff; /* Indigo très doux */
+  --secondary: #1e293b;     /* Bleu foncé (presque noir) */
+  --sidebar-bg: #dbeafe;    /* Bleu doux pour la barre latérale */
+  --main-bg: #eff6ff;       /* Bleu très pâle pour le fond */
   
   --text-dark: #334155;
   --text-light: #64748b;    
-  --success: #10b981;       /* Verde */
-  --danger: #ef4444;        /* Rojo */
-  --warning: #f59e0b;       /* Amarillo/Naranja */
+  --success: #10b981;       /* Vert */
+  --danger: #ef4444;        /* Rouge */
+  --warning: #f59e0b;       /* Jaune/Orange */
   --radius: 12px;           
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-/* Configuramos el cuerpo de la página */
+/* Configuration du corps de la page */
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   display: block;
   height: 100vh;
   margin: 0;
   background-color: var(--main-bg);
-  overflow: hidden; /* Evita scrolls dobles en la ventana principal */
+  overflow: hidden; /* Évite les doubles barres de défilement */
 }
 
-/* --- CONTENEDOR PRINCIPAL (LAYOUT FLEX) --- */
+/* --- MISE EN PAGE PRINCIPALE (LAYOUT) --- */
 .container {
-  display: flex; /* Pone el menú al lado del contenido */
-  height: 100vh; /* Altura completa */
+  display: flex;
+  height: 100vh;
   width: 100%;
   overflow: hidden;
   background-color: var(--main-bg);
 }
 
-/* --- SIDEBAR (IZQUIERDA) --- */
-.sidebar {
-  width: 260px;
-  background-color: var(--sidebar-bg);
-  border-right: 1px solid #bfdbfe; 
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  flex-shrink: 0; 
-  height: 100%; 
-  box-sizing: border-box;
-}
-
-.brand {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--primary);
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
-  background: rgba(255,255,255,0.5);
-  border-radius: var(--radius);
-}
-
-/* --- SELECTOR DE ROL --- */
-.role-switcher {
-  background: white;
-  padding: 15px;
-  border-radius: var(--radius);
-  margin-bottom: 30px;
-  border: 1px solid #bfdbfe;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.role-label {
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: var(--text-light);
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.role-btn-group {
-  display: flex;
-  background: #f1f5f9;
-  border-radius: 8px;
-  padding: 4px;
-}
-
-.role-option {
-  flex: 1;
-  border: none;
-  background: transparent;
-  padding: 8px 4px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  border-radius: 6px;
-  cursor: pointer;
-  color: var(--text-light);
-  transition: all 0.2s;
-}
-
-.role-option.active {
-  background: var(--primary);
-  color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* --- MENÚ DE NAVEGACIÓN --- */
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.menu-btn {
-  background: transparent;
-  border: none;
-  text-align: left;
-  padding: 12px 16px;
-  border-radius: var(--radius);
-  color: #475569; 
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.menu-btn:hover {
-  background-color: rgba(255, 255, 255, 0.6); 
-  color: var(--primary);
-}
-
-.menu-btn.active {
-  background-color: var(--primary);
-  color: white;
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-}
-
-.menu-btn span {
-  font-size: 1.2rem;
-}
-
-/* --- CONTENIDO PRINCIPAL (DERECHA) --- */
 .main-content {
   flex: 1; 
   overflow-y: auto; 
@@ -154,40 +45,7 @@ body {
   box-sizing: border-box;
 }
 
-/* --- DASHBOARD WIDGETS --- */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-.stat-card {
-  background: white;
-  padding: 20px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #e2e8f0;
-}
-
-.stat-value {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--secondary);
-  margin-top: 5px;
-}
-
-.stat-label {
-  color: var(--text-light);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* --- PANELES GENERALES --- */
+/* --- UTILITAIRES PARTAGÉS (Utilisés partout) --- */
 .card-panel {
   background: white;
   padding: 30px;
@@ -198,7 +56,6 @@ body {
   border: 1px solid #e2e8f0;
 }
 
-/* --- GRID DE CARPETAS / CLASES --- */
 .folder-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -216,412 +73,45 @@ body {
   position: relative;
   overflow: hidden;
 }
+.folder-card:hover { transform: translateY(-5px); }
+.folder-title { font-size: 1.1rem; font-weight: 700; color: var(--secondary); margin-top: 15px; }
 
-.folder-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.folder-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--secondary);
-  margin-top: 15px;
-}
-
-/* --- BOTONES Y FORMULARIOS --- */
-.btn {
-  padding: 10px 20px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-  transition: opacity 0.2s, transform 0.1s;
-  font-size: 0.95rem;
-}
-
+/* --- BOUTONS ET FORMULAIRES GLOBAUX --- */
+.btn { padding: 10px 20px; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; transition: opacity 0.2s; font-size: 0.95rem; }
 .btn:hover { opacity: 0.9; }
-.btn:active { transform: scale(0.98); }
-
 .btn-primary { background: var(--primary); color: white; }
 .btn-danger { background: #fee2e2; color: var(--danger); }
 .btn-secondary { background: white; border: 1px solid #cbd5e1; color: var(--secondary); }
+.btn-icon { background: transparent; border: none; font-size: 1.2rem; cursor: pointer; padding: 5px; border-radius: 50%; }
 
-.btn-danger:hover { background: #fecaca; }
-.btn-secondary:hover { background: #f8fafc; border-color: #94a3b8; }
+input { width: 100%; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 8px; margin-bottom: 15px; font-size: 1rem; outline: none; box-sizing: border-box; }
+input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light); }
 
-.btn-icon {
-  background: transparent;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 5px;
-  border-radius: 50%;
-  transition: background 0.2s;
-}
-.btn-icon:hover { background: #f1f5f9; }
+/* --- ANIMATIONS GLOBALES --- */
+.fade-in { animation: fadeIn 0.4s ease-out forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-input {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  font-size: 1rem;
-  outline: none;
-  transition: border-color 0.2s;
-  box-sizing: border-box;
-}
-
-input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-light);
-}
-
-/* --- TABLAS (PARA ALUMNOS) --- */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-}
-
-th {
-  text-align: left;
-  padding: 15px;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  color: var(--text-light);
-  font-weight: 700;
-  border-bottom: 2px solid #e2e8f0;
-}
-
-td {
-  padding: 15px;
-  border-bottom: 1px solid #f1f5f9;
+/* --- MODE SOMBRE GLOBAL --- */
+body.dark-mode {
+  --main-bg: #0f172a;
+  --sidebar-bg: #1e293b;
+  --secondary: #f1f5f9;
+  --text-dark: #cbd5e1;
+  --text-light: #94a3b8;
+  --primary-light: #1e293b;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
   color: var(--text-dark);
 }
 
-tr:last-child td {
-  border-bottom: none;
-}
-
-/* --- FLASHCARD (JUEGO 3D) --- */
-.flashcard-container {
-  perspective: 1000px;
-  width: 100%;
-  max-width: 500px;
-  height: 300px;
-  margin: 30px auto;
-  cursor: pointer;
-}
-
-.flashcard-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
-  transform-style: preserve-3d;
-}
-
-.flashcard-inner.flipped {
-  transform: rotateX(180deg);
-}
-
-.flashcard-front, .flashcard-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: white;
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-  padding: 30px;
-  text-align: center;
-  box-sizing: border-box;
-  border: 1px solid #e2e8f0;
-}
-
-.flashcard-front h2, .flashcard-back h2 {
-  font-size: 1.8rem;
-  color: var(--secondary);
-}
-
-.flashcard-back {
-  transform: rotateX(180deg);
-  border: 2px solid var(--primary);
-  background-color: #fafafa;
-}
-
-/* --- BARRA DE PROGRESO (EXAMEN) --- */
-.progress-bar {
-  height: 10px;
-  background: #e2e8f0;
-  border-radius: 5px;
-  overflow: hidden;
-  margin: 20px 0;
-}
-
-.progress-fill {
-  height: 100%;
-  background: var(--primary);
-  transition: width 0.5s ease-out;
-  border-radius: 5px;
-}
-
-/* --- LISTA DE GESTIÓN --- */
-.list-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-  padding: 15px 20px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: 1px solid #e2e8f0;
-  transition: transform 0.2s;
-}
-
-.list-item:hover {
-  transform: translateX(5px);
-  border-left: 4px solid var(--primary);
-}
-
-/* --- LISTA DE PREGUNTAS (ESTILO ADICIONAL PARA CONTENT EDITOR) --- */
-/* Agregamos esto para asegurar que el editor de contenido se vea bien */
-.question-item {
-  background: white;
-  padding: 15px;
-  margin-bottom: 10px;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: transform 0.2s, border-left 0.2s;
-}
-
-.question-item:hover {
-  transform: translateX(5px);
-  border-left: 4px solid var(--primary);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-.question-details { display: flex; flex-direction: column; }
-.question-actions { display: flex; gap: 10px; }
-
-
-/* --- ANIMACIONES --- */
-.shake {
-  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
-}
-
-@keyframes shake {
-  10%, 90% { transform: translate3d(-1px, 0, 0); }
-  20%, 80% { transform: translate3d(2px, 0, 0); }
-  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-  40%, 60% { transform: translate3d(4px, 0, 0); }
-}
-
-.fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Confetti */
-.confetti {
-  position: fixed;
-  top: -20px;
-  z-index: 9999;
-  pointer-events: none;
-  animation: fall linear forwards;
-  border-radius: 3px;
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(100vh) rotate(720deg);
-    opacity: 0;
-  }
-}
-/* --- MODO OSCURO --- */
-body.dark-mode {
-  /* Redefinimos las variables de color */
-  --main-bg: #0f172a;       /* Fondo muy oscuro (Slate 900) */
-  --sidebar-bg: #1e293b;    /* Sidebar oscuro (Slate 800) */
-  --secondary: #f8fafc;     /* Texto principal ahora es blanco */
-  
-  --text-dark: #e2e8f0;     /* Texto secundario claro */
-  --text-light: #94a3b8;    /* Texto grisáceo */
-  
-  --primary-light: #1e293b; /* Fondos suaves ahora son oscuros */
-  
-  /* Ajuste de sombras para que se noten en fondo oscuro */
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-}
-
-/* Forzamos que las tarjetas cambien de color en modo oscuro */
+/* Forcer les styles sombres sur les éléments globaux */
 body.dark-mode .card-panel,
-body.dark-mode .stat-card,
 body.dark-mode .folder-card,
-body.dark-mode .role-switcher,
-body.dark-mode .question-item,
-body.dark-mode .list-item,
 body.dark-mode input,
-body.dark-mode .flashcard-front,
-body.dark-mode button.btn-secondary {
-  background-color: #1e293b; /* Color de tarjeta oscuro */
-  border-color: #334155;     /* Bordes más sutiles */
-  color: #e2e8f0;
-}
-
-/* Ajustes específicos para inputs y botones en modo oscuro */
-body.dark-mode input::placeholder { color: #64748b; }
-body.dark-mode .btn-secondary:hover { background-color: #334155; }
-body.dark-mode .flashcard-back { background-color: #0f172a; border-color: var(--primary); }
-/* ========================================= */
-/* MODO OSCURO (DARK MODE) - PRO       */
-/* ========================================= */
-/* ========================================= */
-/* MODO OSCURO (DARK MODE) - VERSIÓN FINAL   */
-/* ========================================= */
-
-body.dark-mode {
-  /* 1. Variables de Color (Redefinidas) */
-  --main-bg: #0f172a;       /* Fondo Slate 900 */
-  --sidebar-bg: #1e293b;    /* Sidebar Slate 800 */
-  --secondary: #f1f5f9;     /* Texto principal ahora es BLANCO (Antes era oscuro) */
-  --text-dark: #cbd5e1;     /* Texto secundario gris claro */
-  --text-light: #94a3b8;    /* Texto terciario */
-  
-  --primary-light: #1e293b; /* Fondos suaves ahora oscuros */
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-
-  /* 2. FORZAR COLOR DE TEXTO GLOBAL */
-  /* Esto arregla los títulos "invisibles" fuera de las tarjetas */
-  color: var(--text-dark);
-}
-
-/* 3. TÍTULOS Y TEXTOS (Arreglo de contraste) */
-body.dark-mode h1, 
-body.dark-mode h2, 
-body.dark-mode h3, 
-body.dark-mode h4,
-body.dark-mode strong {
-  color: #ffffff; /* Blanco puro para encabezados */
-}
-
-body.dark-mode p, 
-body.dark-mode label, 
-body.dark-mode span {
-  color: var(--text-dark);
-}
-
-/* 4. TARJETAS Y CONTENEDORES */
-body.dark-mode .card-panel,
-body.dark-mode .stat-card,
-body.dark-mode .folder-card,
-body.dark-mode .role-switcher,
-body.dark-mode .question-item,
-body.dark-mode .list-item,
-body.dark-mode .flashcard-front,
-body.dark-mode .flashcard-back {
-  background-color: #1e293b; 
-  border-color: #334155;
-  color: var(--text-dark);
-}
-
-/* 5. INPUTS (Cajas de Texto) */
-body.dark-mode input {
-  background-color: #0f172a !important; /* Forzamos fondo oscuro */
-  border: 1px solid #475569 !important;
-  color: #fff !important;
-}
-body.dark-mode input::placeholder {
-  color: #64748b;
-}
-body.dark-mode input:focus {
-  border-color: var(--primary) !important;
-  background-color: #1e293b !important;
-}
-
-/* 6. BOTONES PELIGRO (El botón rosa brillante) */
-body.dark-mode .btn-danger {
-  background-color: #8018e0; /* Rojo vino oscuro */
-  color: #ffffff;            /* Texto rojo claro */
-  border: 1px solid #8018e0;
-}
-body.dark-mode .btn-danger:hover {
-  background-color: #8018e0;
-}
-
-/* 7. BOTONES SECUNDARIOS (Blancos) */
 body.dark-mode .btn-secondary {
-  background-color: #1e293b;
-  border-color: #475569;
-  color: #e2e8f0;
-}
-body.dark-mode .btn-secondary:hover {
-  background-color: #334155;
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+  color: var(--text-dark) !important;
 }
 
-/* 8. TABLAS */
-body.dark-mode table,
-body.dark-mode th,
-body.dark-mode td {
-  border-color: #334155;
-  color: #e2e8f0;
-}
-body.dark-mode thead {
-  background-color: #0f172a;
-}
-body.dark-mode th {
-  color: #94a3b8; /* Encabezados de tabla más sutiles */
-}
-
-/* 9. DETALLES FINOS */
-body.dark-mode .brand {
-  background: rgba(255,255,255,0.05);
-  color: white;
-}
-body.dark-mode .role-btn-group {
-  background: #0f172a;
-}
-body.dark-mode .role-option:hover {
-  color: white;
-}
-
-/* Scrollbar oscuro */
-body.dark-mode ::-webkit-scrollbar { width: 12px; }
-body.dark-mode ::-webkit-scrollbar-track { background: #0f172a; }
-body.dark-mode ::-webkit-scrollbar-thumb { background-color: #334155; border-radius: 6px; border: 3px solid #0f172a; }
-
-/* AGREGA ESTO DENTRO DE src/styles.css */
-
-/* Forzamos que los elementos de la lista se oscurezcan sí o sí */
-body.dark-mode .list-item, 
-body.dark-mode .question-item {
-  background-color: #1e293b !important; /* Fondo oscuro */
-  border-color: #334155 !important;      /* Borde sutil */
-  color: #e2e8f0 !important;             /* Texto claro */
-  box-shadow: none !important;           /* Quitamos sombras blancas si las hubiera */
-}
-
-/* Arreglamos los iconos de editar/borrar dentro de la lista */
-body.dark-mode .list-item button,
-body.dark-mode .question-item button {
-  color: #e2e8f0; /* Iconos claros por defecto */
-}
-
-/* El icono de borrar (basura) lo mantenemos rojo pero suave */
-body.dark-mode .list-item button[title="Borrar"],
-body.dark-mode .question-item button[title="Borrar"] {
-  color: #fca5a5 !important; /* Rojo claro */
-}
+body.dark-mode input { background-color: #0f172a !important; color: white !important; }
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 { color: white; }
