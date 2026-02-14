@@ -1,0 +1,36 @@
+<div class="fade-in">
+  <h1 style="color: var(--secondary);">Bonjour, {{ userRole === 'teacher' ? 'Professeur' : 'Étudiant' }} 👋</h1>
+  
+  <p style="color: var(--text-light); margin-bottom: 30px;">
+    {{ userRole === 'teacher' ? 'Gérez vos classes, vos élèves et votre contenu.' : 'Prêt à apprendre quelque chose de nouveau aujourd\'hui ?' }}
+  </p>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-label">Total Questions</span>
+      <span class="stat-value" style="color: var(--primary);">{{ totalCards }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Dossiers / Matières</span>
+      <span class="stat-value" style="color: var(--warning);">{{ totalFolders }}</span>
+    </div>
+    @if (userRole === 'teacher') {
+      <div class="stat-card">
+        <span class="stat-label">Classes Actives</span>
+        <span class="stat-value" style="color: var(--success);">{{ totalClasses }}</span>
+      </div>
+    }
+  </div>
+
+  <div class="card-panel">
+    <h3>🚀 Actions Rapides</h3>
+    <div style="display: flex; gap: 10px; margin-top: 15px;">
+      <button class="btn btn-primary" (click)="navigate.emit('crear')">Créer des Cartes</button>
+      @if (userRole === 'teacher') {
+        <button class="btn btn-secondary" (click)="navigate.emit('clases')">Gérer les Élèves</button>
+      } @else {
+        <button class="btn btn-secondary" (click)="navigate.emit('menu-examen')">Commencer l'Examen</button>
+      }
+    </div>
+  </div>
+</div>

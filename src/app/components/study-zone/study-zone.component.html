@@ -1,0 +1,75 @@
+<div class="fade-in">
+  
+  @if (view === 'menu') {
+    <h1>{{ mode === 'study' ? 'Bibliothèque' : 'Zone d\'Examen' }}</h1>
+    <p style="color: var(--text-light); margin-bottom: 30px;">Sélectionnez un sujet.</p>
+    
+    <div class="folder-grid">
+      @for (cat of categories; track cat) {
+        <div class="folder-card" (click)="selectCategory(cat)">
+          <div style="font-size: 2rem;">{{ mode === 'study' ? '📖' : '🎓' }}</div>
+          <div class="folder-title">{{ cat }}</div>
+        </div>
+      }
+    </div>
+  }
+
+  @if (view === 'playing' && mode === 'study') {
+    <div style="text-align: center;">
+      <button class="btn btn-secondary" (click)="view = 'menu'">⬅ Quitter</button>
+      
+      <div class="flashcard-container" (click)="toggleAnswer()">
+        <div class="flashcard-inner" [class.flipped]="showAnswer">
+          <div class="flashcard-front">
+            <h2>{{ playableCards[currentIndex].question }}</h2>
+            <p>(Cliquez pour voir la réponse)</p>
+          </div>
+          <div class="flashcard-back">
+            <h2 style="color: var(--primary);">{{ playableCards[currentIndex].answer }}</h2>
+          </div>
+        </div>
+      </div>
+      
+      <button class="btn btn-primary" (click)="nextCard()" style="margin-top: 30px;">Suivant ➡️</button>
+    </div>
+  }
+
+  @if (view === 'playing' && mode === 'exam') {
+    <div style="max-width: 600px; margin: 0 auto;" [class.shake]="isShaking">
+      
+      <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+        <span>Question {{ currentIndex + 1 }}/{{ playableCards.length }}</span>
+        <span>Points : {{ score }}</span>
+      </div>
+      
+      <div class="card-panel" style="text-align: center; padding: 40px; margin-bottom: 20px;">
+        <h2>{{ playableCards[currentIndex].question }}</h2>
+      </div>
+
+      <div style="display: grid; gap: 15px;">
+        @for (opt of options; track opt) {
+          <button class="btn" style="padding: 20px; border: 2px solid #e2e8f0; background: white;"
+            (click)="isCorrect === null ? checkAnswer(opt) : null"
+            [style.background]="isCorrect !== null && opt === playableCards[currentIndex].answer ? '#d1fae5' : 'white'">
+            {{ opt }}
+          </button>
+        }
+      </div>
+
+      @if (isCorrect !== null) {
+        <div style="text-align: center; margin-top: 30px;">
+          <p style="font-size: 1.2rem; font-weight: bold;">{{ isCorrect ? 'Correct ! 🎉' : 'Faux ! ❌' }}</p>
+          <button class="btn btn-primary" (click)="nextCard()">Continuer ➡️</button>
+        </div>
+      }
+    </div>
+  }
+
+  @if (view === 'result') {
+    <div class="card-panel" style="text-align: center; padding: 50px;">
+      <h1>🎉 Examen Terminé</h1>
+      <div style="font-size: 3rem; margin: 20px;">{{ score }} / {{ playableCards.length }}</div>
+      <button class="btn btn-primary" (click)="finish.emit()">Retour à l'accueil</button>
+    </div>
+  }
+</div>

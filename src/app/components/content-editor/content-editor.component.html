@@ -1,0 +1,56 @@
+<div class="fade-in">
+  @if (!managingCategory) {
+    <div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
+      <h1>Gestion du Contenu</h1>
+      <button class="btn btn-primary" (click)="nuevaCarpeta()">+ Nouveau Dossier</button>
+    </div>
+    
+    <div class="folder-grid">
+      @for (cat of categories; track cat) {
+        <div class="folder-card" (click)="managingCategory = cat; refresh()">
+          <div style="font-size: 2rem;">📝</div>
+          <div class="folder-title">{{ cat }}</div>
+          <button class="btn btn-danger" style="margin-top: 15px; width: 100%;" (click)="borrarCarpeta(cat, $event)">
+            Supprimer
+          </button>
+        </div>
+      }
+    </div>
+
+  } @else {
+    <button class="btn btn-secondary" (click)="managingCategory = null; refresh()" style="margin-bottom: 20px;">
+      ⬅ Retour
+    </button>
+    
+    <h2>Édition de : <span style="color: var(--primary);">{{ managingCategory }}</span></h2>
+    
+    <div class="card-panel" style="background: var(--primary-light); margin-bottom: 30px;">
+      <h3>{{ editingCardId ? '✏️ Modification' : '✨ Nouvelle Question' }}</h3>
+      
+      <div style="display: flex; gap: 20px;">
+        <input [(ngModel)]="formQuestion" placeholder="Question..." style="flex:1">
+        <input [(ngModel)]="formAnswer" placeholder="Réponse..." style="flex:1">
+      </div>
+      
+      <div style="display: flex; gap: 10px;">
+        <button class="btn btn-primary" (click)="guardar()" style="flex:1">Enregistrer</button>
+        @if (editingCardId) { 
+          <button class="btn btn-secondary" (click)="limpiar()">Annuler</button> 
+        }
+      </div>
+    </div>
+
+    @for (card of managedCards.slice().reverse(); track card.id) {
+      <div class="question-item" style="background: white; padding: 15px; margin-bottom: 10px; border: 1px solid #eee; border-radius: 8px; display: flex; justify-content: space-between;">
+        <div>
+          <strong>{{ card.question }}</strong> <br>
+          <small style="color:gray">{{ card.answer }}</small>
+        </div>
+        <div>
+          <button class="btn-icon" title="Modifier" (click)="editar(card)">✏️</button>
+          <button class="btn-icon" title="Supprimer" style="color: var(--danger);" (click)="borrarCarta(card.id)">🗑️</button>
+        </div>
+      </div>
+    }
+  }
+</div>

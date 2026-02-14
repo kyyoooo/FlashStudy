@@ -1,0 +1,46 @@
+<div class="container">
+  
+  <app-sidebar 
+    [userRole]="userRole" 
+    [currentView]="currentView"
+    (roleChange)="switchRole($event)"
+    (navigate)="navigate($event)">
+  </app-sidebar>
+
+  <main class="main-content">
+    
+    @if (currentView === 'dashboard') {
+      <app-dashboard 
+        [userRole]="userRole"
+        [totalCards]="flashcardService.getFlashcards().length"
+        [totalFolders]="0" 
+        [totalClasses]="classService.getClasses().length"
+        (navigate)="navigate($event)">
+      </app-dashboard>
+    }
+
+    @if (currentView === 'clases') {
+      <app-class-manager></app-class-manager>
+    }
+
+    @if (currentView === 'crear') {
+      <app-content-editor></app-content-editor>
+    }
+
+    @if (currentView === 'menu' || currentView === 'jugar') {
+      <app-study-zone mode="study" (finish)="navigate('dashboard')"></app-study-zone>
+    }
+
+    @if (currentView === 'menu-examen' || currentView.includes('examen')) {
+      <app-study-zone mode="exam" (finish)="navigate('dashboard')"></app-study-zone>
+    }
+
+    @if (currentView === 'config') {
+      <div class="fade-in card-panel">
+        <h1>Paramètres</h1>
+        <p>Rôle actuel : {{ userRole }}</p>
+      </div>
+    }
+
+  </main>
+</div>

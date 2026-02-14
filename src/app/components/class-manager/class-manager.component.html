@@ -1,0 +1,60 @@
+<div class="fade-in">
+  @if (!selectedClass) {
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+      <h1>Mes Classes et Groupes</h1>
+      <button class="btn btn-primary" (click)="crearNuevaClase()">+ Nouvelle Classe</button>
+    </div>
+    
+    <div class="folder-grid">
+      @for (clase of allClasses; track clase.id) {
+        <div class="folder-card" (click)="verDetalle(clase)" style="border-top-color: var(--success);">
+          <div style="font-size: 2rem;">👩‍🏫</div>
+          <div class="folder-title">{{ clase.name }}</div>
+          <small style="color: var(--text-light)">{{ clase.students.length }} Élèves</small>
+          <button class="btn btn-danger" style="margin-top: 15px; width: 100%;" (click)="borrarClase(clase.id, $event)">
+            Supprimer
+          </button>
+        </div>
+      }
+    </div>
+
+  } @else {
+    <button class="btn btn-secondary" (click)="volver()" style="margin-bottom: 20px;">⬅ Retour</button>
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+      <h2 style="color: var(--primary);">Gestion de : {{ selectedClass.name }}</h2>
+      <button class="btn btn-secondary" (click)="copiarLink(selectedClass)">🔗 Copier l'Invitation</button>
+    </div>
+
+    <div class="card-panel" style="margin-bottom: 30px; background: #f0fdf4;">
+      <h3>Inscrire un Élève</h3>
+      <div style="display: flex; gap: 10px;">
+        <input [(ngModel)]="formStudentName" placeholder="Nom..." style="margin:0; flex:1;">
+        <button class="btn btn-primary" style="background: #16a34a;" (click)="agregarAlumno()">Ajouter</button>
+      </div>
+    </div>
+
+    <div class="card-panel">
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="text-align: left;">Nom</th>
+            <th>Note</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (student of selectedClass.students; track student) {
+            <tr style="border-bottom: 1px solid #eee;">
+              <td style="padding: 10px;">👤 {{ student }}</td>
+              <td>{{ getMockScore(student) }}/100</td>
+              <td>
+                <button class="btn-icon" title="Supprimer" style="color: var(--danger);" (click)="eliminarAlumno(student)">🗑️</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

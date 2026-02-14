@@ -1,0 +1,18 @@
+:host-context(body.dark-mode) .question-item,
+:host-context(body.dark-mode) .list-item {
+  background-color: #1e293b; /* Arrière-plan sombre */
+  border-color: #334155;  
+  color: #000000;
+  box-shadow: none;
+}
+
+:host-context(body.dark-mode) .question-item button,
+:host-context(body.dark-mode) .list-item button {
+  background-color: transparent;
+  color: #000000; 
+}
+
+/* Cible le bouton de suppression (assure-toi que le HTML a title="Supprimer") */
+:host-context(body.dark-mode) button[title="Supprimer"] {
+  color: #fca5a5; 
+}
